@@ -43,6 +43,7 @@ public class DiaDia {
 		do		
 			istruzione = scannerDiLinee.nextLine();
 		while (!processaIstruzione(istruzione));
+		scannerDiLinee.close();
 	}   
 
 
@@ -107,7 +108,7 @@ public class DiaDia {
 		System.out.println("Grazie di aver giocato!");  // si desidera smettere
 	}
 
-	public static void main(String[] argc) {
+	public static void main(String[] args) {
 		DiaDia gioco = new DiaDia();
 		gioco.gioca();
 	}
