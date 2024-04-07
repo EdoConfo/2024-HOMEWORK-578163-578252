@@ -43,7 +43,7 @@ public class DiaDia {
 		do		
 			istruzione = scannerDiLinee.nextLine();
 		while (!processaIstruzione(istruzione));
-		scannerDiLinee.close(); //cacaca
+		scannerDiLinee.close();
 	}   
 
 
