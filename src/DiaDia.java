@@ -54,6 +54,12 @@ public class DiaDia {
 	 */
 	private boolean processaIstruzione(String istruzione) {
 		Comando comandoDaEseguire = new Comando(istruzione);
+		
+		if (istruzione.isEmpty()) {
+	        System.out.println("Inserisci un'istruzione valida.");
+	        return false; 
+	    }
+		
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine(); 
 			return true;
@@ -62,6 +68,8 @@ public class DiaDia {
 			this.vai(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
+		else if(comandoDaEseguire.getNome().equals("\n"))
+			System.out.println("Comando sconosciuto");
 		else
 			System.out.println("Comando sconosciuto");
 		if (this.partita.vinta()) {
@@ -91,6 +99,7 @@ public class DiaDia {
 		
 		if(direzione==null) {
 			System.out.println("Dove vuoi andare ?");
+			
 		}
 		Stanza prossimaStanza = null;
 		
@@ -100,8 +109,8 @@ public class DiaDia {
 			System.out.println("Direzione inesistente");
 		else {
 			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getCfu();
-			this.partita.setCfu(--cfu);
+			int cfu = this.partita.getGiocatore().getCfu();
+			this.partita.getGiocatore().setCfu(--cfu);
 		}
 		System.out.println(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
 		

@@ -1,4 +1,3 @@
-import java.util.Set;
 
 public class Labirinto {
 	private static Stanza stanzaIniziale;
