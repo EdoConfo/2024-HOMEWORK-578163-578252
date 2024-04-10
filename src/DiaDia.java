@@ -29,9 +29,11 @@ public class DiaDia {
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
 
 	private Partita partita;
+	private Borsa borsa;
 
 	public DiaDia() {
 		this.partita = new Partita();
+		this.borsa = new Borsa();
 	}
 
 	public void gioca() {
@@ -58,10 +60,13 @@ public class DiaDia {
 			this.fine(); 
 			return true;
 		} else if (comandoDaEseguire.getNome().equals("vai"))
-			
 			this.vai(comandoDaEseguire.getParametro());
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
+		else if (comandoDaEseguire.getNome().equals("prendi"))
+	        this.prendi(comandoDaEseguire.getParametro());
+	    else if (comandoDaEseguire.getNome().equals("posa"))
+	        this.posa(comandoDaEseguire.getParametro());
 		else
 			System.out.println("Comando sconosciuto");
 		if (this.partita.vinta()) {
@@ -73,14 +78,56 @@ public class DiaDia {
 	}   
 
 	// implementazioni dei comandi dell'utente:
+	    
+	/*
+	 * Funzione presa oggetto
+	 */
+	    private void prendi(String nomeAttrezzo) {
+	        if (nomeAttrezzo == null) {
+	            System.out.println("Cosa vuoi prendere?");
+	            return;
+	        }
+	        Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
+	        Attrezzo attrezzoDaPrendere = stanzaCorrente.getAttrezzo(nomeAttrezzo);
+	        if (attrezzoDaPrendere != null) {
+	            if (this.borsa.addAttrezzo(attrezzoDaPrendere)) {
+	                stanzaCorrente.removeAttrezzo(attrezzoDaPrendere);
+	                System.out.println("Hai preso: " + attrezzoDaPrendere.getNome());
+	            } else {
+	                System.out.println("La borsa è troppo piena per prendere questo attrezzo.");
+	            }
+	        } else {
+	            System.out.println("L'attrezzo '" + nomeAttrezzo + "' non è presente in questa stanza.");
+	        }
+	    }
 
+	    private void posa(String nomeAttrezzo) {
+	        if (nomeAttrezzo == null) {
+	            System.out.println("Cosa vuoi posare?");
+	            return;
+	        }
+	        Attrezzo attrezzoDaPosare = this.borsa.getAttrezzo(nomeAttrezzo);
+	        if (attrezzoDaPosare != null) {
+	            Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
+	            if (stanzaCorrente.addAttrezzo(attrezzoDaPosare)) {
+	                this.borsa.removeAttrezzo(nomeAttrezzo);
+	                System.out.println("Hai posato: " + attrezzoDaPosare.getNome());
+	            } else {
+	                System.out.println("Questa stanza è troppo piena per posare l'attrezzo.");
+	            }
+	        } else {
+	            System.out.println("L'attrezzo '" + nomeAttrezzo + "' non è presente nella borsa.");
+	        }
+	    }
+	    
 	/**
 	 * Stampa informazioni di aiuto.
 	 */
 	private void aiuto() {
 		for(int i=0; i< elencoComandi.length; i++) 
 			System.out.print(elencoComandi[i]+" ");
-		System.out.println();
+		System.out.println("prendi <nomeAttrezzo> posa <nomeAttrezzo>");
+		//System.out.println();
 	}
 
 	/**

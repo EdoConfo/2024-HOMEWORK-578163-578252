@@ -125,7 +125,7 @@ public class Stanza {
     	risultato.append("\nAttrezzi nella stanza: ");
     	for (Attrezzo attrezzo : this.attrezzi) {
     		if(attrezzo!=null){
-    		risultato.append(attrezzo.toString()+" ");
+    		risultato.append(attrezzo.toString()).append(" ");
     		}
     	}
     	return risultato.toString();
@@ -167,8 +167,18 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		// TODO da implementare
-		return false;
+	    for (int i = 0; i < this.numeroAttrezzi; i++) {
+	        if (this.attrezzi[i].getNome().equals(attrezzo.getNome())) {
+	            // Rimuovi l'attrezzo dalla stanza e compatta l'array
+	            for (int j = i; j < this.numeroAttrezzi - 1; j++) {
+	                this.attrezzi[j] = this.attrezzi[j + 1];
+	            }
+	            this.attrezzi[this.numeroAttrezzi - 1] = null;
+	            this.numeroAttrezzi--;
+	            return true; // Atrezzo rimosso con successo
+	        }
+	    }
+	    return false; // Atrezzo non trovato
 	}
 
 
