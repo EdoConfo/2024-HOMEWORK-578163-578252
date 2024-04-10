@@ -160,7 +160,7 @@ public class Stanza {
 		}
 		return attrezzoCercato;	
 	}
-
+	
 	/**
 	 * Rimuove un attrezzo dalla stanza (ricerca in base al nome).
 	 * @param nomeAttrezzo

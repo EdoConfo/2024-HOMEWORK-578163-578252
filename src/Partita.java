@@ -33,7 +33,7 @@ public class Partita {
 	public boolean vinta() {
 		if(getLabirinto() != null && getLabirinto().getStanzaCorrente() != null &&
 			    getLabirinto().getStanzaFinale() != null &&
-			    getLabirinto().getStanzaCorrente().getNome().equals(getLabirinto().getStanzaFinale().getNome()))
+			    getLabirinto().getStanzaCorrente().equals(getLabirinto().getStanzaFinale()))
 			return true;
 		return false;
 	}

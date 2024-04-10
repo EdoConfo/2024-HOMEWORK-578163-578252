@@ -97,6 +97,8 @@ public class DiaDia {
 	 */
 	private void vai(String direzione) {
 		
+		Scanner scannderDiDirezione = new Scanner(System.in);
+		
 		if(direzione==null) {
 			System.out.println("Dove vuoi andare ?");
 			
@@ -105,7 +107,7 @@ public class DiaDia {
 		
 		
 		
-		//DA MODIFICARE SE IN INPUT ABBIAMO SOLO "VAI" SENZA NESSUN PARAMETRO !!!!!!!!
+		//TODO DA MODIFICARE SE IN INPUT ABBIAMO SOLO "VAI" SENZA NESSUN PARAMETRO !!!!!!!!
 		
 		
 		
