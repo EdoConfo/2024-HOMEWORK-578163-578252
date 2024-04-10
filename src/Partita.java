@@ -19,7 +19,6 @@ public class Partita {
 	
 	public Partita(){
 		this.labirinto = new Labirinto();
-		Labirinto.creaStanze();
 		this.finita = false;
 		this.cfu = CFU_INIZIALI;
 	}
@@ -34,7 +33,9 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		if(getLabirinto().getStanzaCorrente().equals(Labirinto.getStanzaFinale()))
+		if(getLabirinto() != null && getLabirinto().getStanzaCorrente() != null &&
+			    getLabirinto().getStanzaFinale() != null &&
+			    getLabirinto().getStanzaCorrente().getNome().equals(getLabirinto().getStanzaFinale().getNome()))
 			return true;
 		return false;
 	}

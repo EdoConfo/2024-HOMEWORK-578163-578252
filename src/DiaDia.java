@@ -89,8 +89,9 @@ public class DiaDia {
 	 */
 	private void vai(String direzione) {
 		
-		if(direzione==null)
+		if(direzione==null) {
 			System.out.println("Dove vuoi andare ?");
+		}
 		Stanza prossimaStanza = null;
 		
 		prossimaStanza = this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(direzione);
