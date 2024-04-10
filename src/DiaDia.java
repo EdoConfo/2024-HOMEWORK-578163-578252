@@ -101,6 +101,15 @@ public class DiaDia {
 			System.out.println("Dove vuoi andare ?");
 			
 		}
+		
+		
+		
+		
+		//DA MODIFICARE SE IN INPUT ABBIAMO SOLO "VAI" SENZA NESSUN PARAMETRO !!!!!!!!
+		
+		
+		
+		
 		Stanza prossimaStanza = null;
 		
 		prossimaStanza = this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(direzione);
