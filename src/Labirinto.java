@@ -44,7 +44,6 @@ public class Labirinto {
 		// il gioco comincia nell'atrio
         stanzaIniziale = atrio;  
 		stanzaFinale = biblioteca;
-		System.out.println(getStanzaIniziale().getNome() + ", pippo");
     }
 
 	public void setStanzaCorrente(Stanza stanzaCorrente) {

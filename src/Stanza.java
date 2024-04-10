@@ -152,8 +152,8 @@ public class Stanza {
      * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
-		Attrezzo attrezzoCercato;
-		attrezzoCercato = null;
+		Attrezzo attrezzoCercato = null;
+
 		for (Attrezzo attrezzo : this.attrezzi) {
 			if (attrezzo.getNome().equals(nomeAttrezzo))
 				attrezzoCercato = attrezzo;

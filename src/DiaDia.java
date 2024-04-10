@@ -71,7 +71,7 @@ public class DiaDia {
 			this.aiuto();
 		else if (comandoDaEseguire.getNome().equals("prendi"))
 	        this.prendi(comandoDaEseguire.getParametro());
-	  else if (comandoDaEseguire.getNome().equals("posa"))
+		else if (comandoDaEseguire.getNome().equals("posa"))
 	        this.posa(comandoDaEseguire.getParametro());
 		else if(comandoDaEseguire.getNome().equals("\n"))
 			System.out.println("Comando sconosciuto");
@@ -93,13 +93,15 @@ public class DiaDia {
 	    private void prendi(String nomeAttrezzo) {
 	        if (nomeAttrezzo == null) {
 	            System.out.println("Cosa vuoi prendere?");
-	            return;
 	        }
-	        Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
-	        Attrezzo attrezzoDaPrendere = stanzaCorrente.getAttrezzo(nomeAttrezzo);
+	        
+	        Scanner scannerDiAttrezzo = new Scanner(System.in);
+	        nomeAttrezzo = scannerDiAttrezzo.nextLine();
+	        
+	        Attrezzo attrezzoDaPrendere = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 	        if (attrezzoDaPrendere != null) {
 	            if (this.borsa.addAttrezzo(attrezzoDaPrendere)) {
-	                stanzaCorrente.removeAttrezzo(attrezzoDaPrendere);
+	                this.partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
 	                System.out.println("Hai preso: " + attrezzoDaPrendere.getNome());
 	            } else {
 	                System.out.println("La borsa è troppo piena per prendere questo attrezzo.");
@@ -107,13 +109,14 @@ public class DiaDia {
 	        } else {
 	            System.out.println("L'attrezzo '" + nomeAttrezzo + "' non è presente in questa stanza.");
 	        }
+	        scannerDiAttrezzo.close();
 	    }
 
 	    private void posa(String nomeAttrezzo) {
 	        if (nomeAttrezzo == null) {
 	            System.out.println("Cosa vuoi posare?");
-	            return;
 	        }
+	        
 	        Attrezzo attrezzoDaPosare = this.borsa.getAttrezzo(nomeAttrezzo);
 	        if (attrezzoDaPosare != null) {
 	            Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
@@ -143,20 +146,16 @@ public class DiaDia {
 	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
 	 */
 	private void vai(String direzione) {
-
+		
+		Scanner scannerdiDirezione = new Scanner(System.in);
+		
 		if(direzione==null) {
 			System.out.println("Dove vuoi andare ?");
-
+			
+			direzione = scannerdiDirezione.nextLine();
+			//TODO capisci che succede in vai ()
 		}
-
-
-
-
-		//DA MODIFICARE SE IN INPUT ABBIAMO SOLO "VAI" SENZA NESSUN PARAMETRO !!!!!!!!
-
-
-
-
+		
 		Stanza prossimaStanza = null;
 
 		prossimaStanza = this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(direzione);
@@ -169,7 +168,8 @@ public class DiaDia {
 			this.partita.getGiocatore().setCfu(--cfu);
 		}
 		System.out.println(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
-
+		scannerdiDirezione.close();
+		return;
 	}
 
 	/**
