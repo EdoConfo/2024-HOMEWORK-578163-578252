@@ -123,7 +123,7 @@ public class DiaDia {
 	        if (nomeAttrezzo == null) {
 	            System.out.println("Cosa vuoi posare?");
 	        }
-	        
+	        //TODO completa gli errori
 	        Attrezzo attrezzoDaPosare = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
 	        if (attrezzoDaPosare != null) {
 	            Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
