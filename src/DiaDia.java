@@ -26,7 +26,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
+	static final private String[] elencoComandi = {"vai <direzione>, ", "aiuto, ", "prendi <nomeAttrezzo>, ", "posa <nomeAttrezzo>, ", "fine"};
 
 	private Partita partita;
 
@@ -40,9 +40,9 @@ public class DiaDia {
 
 		System.out.println(MESSAGGIO_BENVENUTO);
 		scannerDiLinee = new Scanner(System.in);
-		do
+		do {
 			istruzione = scannerDiLinee.nextLine();
-		while (!processaIstruzione(istruzione));
+		}while (!processaIstruzione(istruzione));
 		scannerDiLinee.close();
 	}
 
@@ -52,8 +52,9 @@ public class DiaDia {
 	 *
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
-	private boolean processaIstruzione(String istruzione) {
-		Comando comandoDaEseguire = new Comando(istruzione);
+	 private boolean processaIstruzione(String istruzione) {
+	
+		 Comando comandoDaEseguire = new Comando(istruzione);
 
 		if (istruzione.isEmpty()) {
 	        System.out.println("Inserisci un'istruzione valida.");
@@ -62,18 +63,22 @@ public class DiaDia {
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine();
 			return true;
-		} else if (comandoDaEseguire.getNome().equals("vai"))
-			this.vai(comandoDaEseguire.getParametro());
+		} else if (comandoDaEseguire.getNome().equals("vai")) {
+			if(comandoDaEseguire.getParametro()!= null)
+				this.vai(comandoDaEseguire.getParametro());
+		}
 		else if (comandoDaEseguire.getNome().equals("aiuto"))
 			this.aiuto();
-		else if (comandoDaEseguire.getNome().equals("prendi"))
-	        this.prendi(comandoDaEseguire.getParametro());
-		else if (comandoDaEseguire.getNome().equals("posa"))
-	        this.posa(comandoDaEseguire.getParametro());
-		else if(comandoDaEseguire.getNome().equals("\n"))
-			System.out.println("Comando sconosciuto");
-		else
-			System.out.println("Comando sconosciuto");
+		else if (comandoDaEseguire.getNome().equals("prendi")) {
+			if(comandoDaEseguire.getParametro()!= null)
+				this.prendi(comandoDaEseguire.getParametro());
+		}
+		else if (comandoDaEseguire.getNome().equals("posa")) {
+			if(comandoDaEseguire.getParametro()!= null)
+				this.posa(comandoDaEseguire.getParametro());
+		}
+		else if(comandoDaEseguire.getParametro()== null)
+			System.out.println("Comando sconosciuto, inserisci di nuovo il comando");
 		if (this.partita.vinta()) {
 			System.out.println("Hai vinto!");
 			return true;
@@ -133,8 +138,7 @@ public class DiaDia {
 	private void aiuto() {
 		for(int i=0; i< elencoComandi.length; i++)
 			System.out.print(elencoComandi[i]+" ");
-		System.out.println("prendi <nomeAttrezzo> posa <nomeAttrezzo>");
-		//System.out.println();
+	System.out.println();
 	}
 
 	/**

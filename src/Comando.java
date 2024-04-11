@@ -20,16 +20,16 @@ public class Comando {
     private String parametro;
 
     public Comando(String istruzione) {
+    	
 		Scanner scannerDiParole = new Scanner(istruzione);
-
+		
 		// prima parola: nome del comando
 		if (scannerDiParole.hasNext())
 			this.nome = scannerDiParole.next(); 
-
+		
 		// seconda parola: eventuale parametro
 		if (scannerDiParole.hasNext())
 			this.parametro = scannerDiParole.next();
-		
 		scannerDiParole.close();
     }
 
