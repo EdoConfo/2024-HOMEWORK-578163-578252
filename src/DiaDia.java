@@ -2,6 +2,7 @@
 
 import java.util.Scanner;
 
+
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
  * Per giocare crea un'istanza di questa classe e invoca il metodo gioca
@@ -41,6 +42,7 @@ public class DiaDia {
 		System.out.println(MESSAGGIO_BENVENUTO);
 		scannerDiLinee = new Scanner(System.in);
 		do {
+			System.out.println("Inserisci l' istruzione : ");
 			istruzione = scannerDiLinee.nextLine();
 		}while (!processaIstruzione(istruzione));
 		scannerDiLinee.close();
@@ -60,6 +62,11 @@ public class DiaDia {
 	        System.out.println("Inserisci un'istruzione valida.");
 	        return false;
 	    }
+		
+		if(comandoDaEseguire.getParametro() == null && (comandoDaEseguire.getNome().equals("vai") || 
+				comandoDaEseguire.getNome().equals("prendi") || comandoDaEseguire.getNome().equals("posa")))
+			System.out.println("Comando incompleto, inserisci di nuovo il comando");
+		
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine();
 			return true;
@@ -77,7 +84,7 @@ public class DiaDia {
 			if(comandoDaEseguire.getParametro()!= null)
 				this.posa(comandoDaEseguire.getParametro());
 		}
-		else if(comandoDaEseguire.getParametro()== null)
+		else
 			System.out.println("Comando sconosciuto, inserisci di nuovo il comando");
 		if (this.partita.vinta()) {
 			System.out.println("Hai vinto!");
@@ -99,7 +106,6 @@ public class DiaDia {
 	        }
 	        
 	        Attrezzo attrezzoDaPrendere = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-	        
 
 	        if (attrezzoDaPrendere != null) {
 	            if (this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzoDaPrendere)) {
