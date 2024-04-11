@@ -29,11 +29,9 @@ public class DiaDia {
 	static final private String[] elencoComandi = {"vai", "aiuto", "fine"};
 
 	private Partita partita;
-	private Borsa borsa;
 
 	public DiaDia() {
 		this.partita = new Partita();
-		this.borsa = new Borsa();
 	}
 
 	public void gioca() {
@@ -61,7 +59,6 @@ public class DiaDia {
 	        System.out.println("Inserisci un'istruzione valida.");
 	        return false;
 	    }
-
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine();
 			return true;
@@ -90,17 +87,17 @@ public class DiaDia {
 	/*
 	 * Funzione presa oggetto
 	 */
-	    private void prendi(String nomeAttrezzo) {
+	    private void prendi(String nomeAttrezzo) {	    	
+	    	
 	        if (nomeAttrezzo == null) {
 	            System.out.println("Cosa vuoi prendere?");
 	        }
 	        
-	        Scanner scannerDiAttrezzo = new Scanner(System.in);
-	        nomeAttrezzo = scannerDiAttrezzo.nextLine();
-	        
 	        Attrezzo attrezzoDaPrendere = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+	        
+
 	        if (attrezzoDaPrendere != null) {
-	            if (this.borsa.addAttrezzo(attrezzoDaPrendere)) {
+	            if (this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzoDaPrendere)) {
 	                this.partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
 	                System.out.println("Hai preso: " + attrezzoDaPrendere.getNome());
 	            } else {
@@ -109,7 +106,6 @@ public class DiaDia {
 	        } else {
 	            System.out.println("L'attrezzo '" + nomeAttrezzo + "' non è presente in questa stanza.");
 	        }
-	        scannerDiAttrezzo.close();
 	    }
 
 	    private void posa(String nomeAttrezzo) {
@@ -117,11 +113,11 @@ public class DiaDia {
 	            System.out.println("Cosa vuoi posare?");
 	        }
 	        
-	        Attrezzo attrezzoDaPosare = this.borsa.getAttrezzo(nomeAttrezzo);
+	        Attrezzo attrezzoDaPosare = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
 	        if (attrezzoDaPosare != null) {
 	            Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
 	            if (stanzaCorrente.addAttrezzo(attrezzoDaPosare)) {
-	                this.borsa.removeAttrezzo(nomeAttrezzo);
+	                this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
 	                System.out.println("Hai posato: " + attrezzoDaPosare.getNome());
 	            } else {
 	                System.out.println("Questa stanza è troppo piena per posare l'attrezzo.");
@@ -147,12 +143,9 @@ public class DiaDia {
 	 */
 	private void vai(String direzione) {
 		
-		Scanner scannerdiDirezione = new Scanner(System.in);
-		
 		if(direzione==null) {
 			System.out.println("Dove vuoi andare ?");
 			
-			direzione = scannerdiDirezione.nextLine();
 			//TODO capisci che succede in vai ()
 		}
 		
@@ -168,7 +161,7 @@ public class DiaDia {
 			this.partita.getGiocatore().setCfu(--cfu);
 		}
 		System.out.println(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
-		scannerdiDirezione.close();
+		//scannerdiDirezione.close();
 		return;
 	}
 
