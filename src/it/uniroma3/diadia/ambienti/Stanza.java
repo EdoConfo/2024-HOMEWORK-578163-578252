@@ -173,8 +173,7 @@ public class Stanza {
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
 	    for (int i = 0; i < this.numeroAttrezzi; i++) {
 	        if (this.attrezzi[i].getNome().equals(attrezzo.getNome())) {
-	            // Rimuovi l'attrezzo dalla stanza e compatta l'array
-	            for (int j = i; j < this.numeroAttrezzi - 1; j++) {
+	            for (int j = i; j < this.numeroAttrezzi - 1; j++) {		// Rimuovi l'attrezzo dalla stanza e compatta l'array
 	                this.attrezzi[j] = this.attrezzi[j + 1];
 	            }
 	            this.attrezzi[this.numeroAttrezzi - 1] = null;

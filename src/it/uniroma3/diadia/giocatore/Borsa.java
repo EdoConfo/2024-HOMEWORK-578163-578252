@@ -8,12 +8,21 @@ public class Borsa {
 	private int numeroAttrezzi;
 	private int pesoMax;
 
+	
+	/*
+	 * Costruttore Borsa
+	 */
 	public Borsa() {
 		this.pesoMax = DEFAULT_PESO_MAX_BORSA;
 		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
 	}
 	
+	
+	/*
+	 * Funzione per aggiungere un attrezzo nella borsa
+	 * sempre se non sfora il numero di slot inventario
+	 */
 	public boolean addAttrezzo(Attrezzo attrezzo) {
 		if (this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
@@ -27,6 +36,7 @@ public class Borsa {
 	public int getPesoMax() {
 		return this.pesoMax;
 	}
+	
 	
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {		
 		Attrezzo a = null;
@@ -52,12 +62,14 @@ public class Borsa {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
 	
+	/*
+	 * Funzione per rimuovere un oggetto dalla borsa
+	 */
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 	    for (int i = 0; i < this.numeroAttrezzi; i++) {
 	        if (this.attrezzi[i].getNome().equals(nomeAttrezzo)) {
 	            Attrezzo attrezzoRimosso = this.attrezzi[i];
-	            // Rimuovi l'attrezzo dalla borsa e compatta l'array
-	            for (int j = i; j < this.numeroAttrezzi - 1; j++) {
+	            for (int j = i; j < this.numeroAttrezzi - 1; j++) {		// Rimuovi l'attrezzo dalla borsa e compatta l'array
 	                this.attrezzi[j] = this.attrezzi[j + 1];
 	            }
 	            this.attrezzi[this.numeroAttrezzi - 1] = null;

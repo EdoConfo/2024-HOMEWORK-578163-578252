@@ -18,16 +18,15 @@ public class Partita {
 	private Giocatore giocatore;
 	private boolean finita;
 	
+	
+	/*
+	 * Costruttore della classe partita
+	 */
 	public Partita(){
 		this.labirinto = new Labirinto();
 		this.giocatore = new Giocatore();
 		this.finita = false;
 	}
-
-    /**
-     * Crea tutte le stanze e le porte di collegamento
-     */
-    
 	
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta

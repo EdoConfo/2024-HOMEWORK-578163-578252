@@ -1,13 +1,7 @@
 package it.uniroma3.diadia;
 
-//TODO perché gli import di diadia e di diadia.giocatore sono warning se vengono usati più volte?
-
-import it.uniroma3.diadia.*;
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.attrezzi.*;
-import it.uniroma3.diadia.giocatore.*;
-import java.util.Scanner;
-
 
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -96,10 +90,8 @@ public class DiaDia {
 		}
 	}
 
-	// implementazioni dei comandi dell'utente:
-
 	/*
-	 * Funzione presa oggetto
+	 * Funzione per prendere un attrezzo
 	 */
 	    private void prendi(String nomeAttrezzo) {	    	
 	    	
@@ -120,7 +112,10 @@ public class DiaDia {
 	        	IOConsole.mostraMessaggio("L'attrezzo '" + nomeAttrezzo + "' non è presente in questa stanza.");
 	        }
 	    }
-
+	    
+	    /*
+	     * Funzione per posare un attrezzo
+	     */
 	    private void posa(String nomeAttrezzo) {
 	        
 	        Attrezzo attrezzoDaPosare = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
@@ -137,6 +132,7 @@ public class DiaDia {
 	        }
 	    }
 
+	    
 	/**
 	 * Stampa informazioni di aiuto.
 	 */
@@ -174,6 +170,9 @@ public class DiaDia {
 		IOConsole.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
 	}
 
+	/*
+	 * Inizia una nuova partita
+	 */
 	public static void main(String[] args) {
 		DiaDia gioco = new DiaDia();
 		gioco.gioca();

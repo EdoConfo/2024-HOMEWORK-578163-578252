@@ -6,12 +6,18 @@ public class Labirinto {
 	private static Stanza stanzaFinale;
 	private Stanza stanzaCorrente;
 	
-	
+	/*
+	 * Costruttore Labirinto
+	 */
 	public Labirinto() {
 		creaStanze();
 		stanzaCorrente = stanzaIniziale;
 	}
+
 	
+	/*
+     * Crea tutte le stanze e le porte di collegamento
+     */
 	public void creaStanze() {
 
 		/* crea gli attrezzi */
