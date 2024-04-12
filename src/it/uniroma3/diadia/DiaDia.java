@@ -1,6 +1,11 @@
 package it.uniroma3.diadia;
 
+//TODO perché gli import di diadia e di diadia.giocatore sono warning se vengono usati più volte?
+
 import it.uniroma3.diadia.*;
+import it.uniroma3.diadia.ambienti.*;
+import it.uniroma3.diadia.attrezzi.*;
+import it.uniroma3.diadia.giocatore.*;
 import java.util.Scanner;
 
 
