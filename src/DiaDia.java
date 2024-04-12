@@ -42,7 +42,7 @@ public class DiaDia {
 		System.out.println(MESSAGGIO_BENVENUTO);
 		scannerDiLinee = new Scanner(System.in);
 		do {
-			System.out.println("Inserisci l' istruzione : ");
+			System.out.print("Inserisci l' istruzione : ");
 			istruzione = scannerDiLinee.nextLine();
 		}while (!processaIstruzione(istruzione));
 		scannerDiLinee.close();
