@@ -43,15 +43,11 @@ public class DiaDia {
 
 	public void gioca() {
 		String istruzione;
-		Scanner scannerDiLinee;
-
 		IOConsole.mostraMessaggio(MESSAGGIO_BENVENUTO);
-		scannerDiLinee = new Scanner(System.in);
 		do {
 			IOConsole.mostraMessaggio("Inserisci l' istruzione : ");
-			istruzione = scannerDiLinee.nextLine();
+			istruzione = IOConsole.leggiRiga();
 		}while (!processaIstruzione(istruzione));
-		scannerDiLinee.close();
 	}
 
 
