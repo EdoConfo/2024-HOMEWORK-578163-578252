@@ -155,9 +155,9 @@ public class Stanza {
 		
 		Attrezzo attrezzoCercato = null;	
 		
-		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
-				attrezzoCercato = attrezzo;
+		for (int i= 0; i < this.numeroAttrezzi; i++) {
+			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
+				attrezzoCercato = this.attrezzi[i];
 				if(attrezzoCercato != null) {		//se trovi l' attrezzo, lo prendi subito
 					return attrezzoCercato;
 				}
