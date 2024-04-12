@@ -1,3 +1,4 @@
+package it.uniroma3.diadia.giocatore;
 
 public class Giocatore {
 	private static final int CFU_INIZIALI = 20;

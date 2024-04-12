@@ -1,3 +1,5 @@
+package it.uniroma3.diadia.ambienti;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Labirinto {
 	private static Stanza stanzaIniziale;
