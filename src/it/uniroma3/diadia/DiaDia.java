@@ -33,7 +33,7 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"vai <direzione>, ", "aiuto, ", "prendi <nomeAttrezzo>, ", "posa <nomeAttrezzo>, ", "fine"};
+	static final private String[] elencoComandi = {"vai <direzione>", "aiuto", "prendi <nomeAttrezzo>", "posa <nomeAttrezzo>", "fine"};
 
 	private Partita partita;
 
@@ -45,10 +45,10 @@ public class DiaDia {
 		String istruzione;
 		Scanner scannerDiLinee;
 
-		System.out.println(MESSAGGIO_BENVENUTO);
+		IOConsole.mostraMessaggio(MESSAGGIO_BENVENUTO);
 		scannerDiLinee = new Scanner(System.in);
 		do {
-			System.out.print("Inserisci l' istruzione : ");
+			IOConsole.mostraMessaggio("Inserisci l' istruzione : ");
 			istruzione = scannerDiLinee.nextLine();
 		}while (!processaIstruzione(istruzione));
 		scannerDiLinee.close();
@@ -65,13 +65,13 @@ public class DiaDia {
 		 Comando comandoDaEseguire = new Comando(istruzione);
 
 		if (istruzione.isEmpty()) {
-	        System.out.println("Inserisci un'istruzione valida.");
+			IOConsole.mostraMessaggio("Inserisci un'istruzione valida.");
 	        return false;
 	    }
 		
 		if(comandoDaEseguire.getParametro() == null && (comandoDaEseguire.getNome().equals("vai") || 
 				comandoDaEseguire.getNome().equals("prendi") || comandoDaEseguire.getNome().equals("posa")))
-			System.out.println("Comando incompleto, inserisci di nuovo il comando");
+			IOConsole.mostraMessaggio("Comando incompleto, inserisci di nuovo il comando");
 		
 		if (comandoDaEseguire.getNome().equals("fine")) {
 			this.fine();
@@ -91,9 +91,9 @@ public class DiaDia {
 				this.posa(comandoDaEseguire.getParametro());
 		}
 		else
-			System.out.println("Comando sconosciuto, inserisci di nuovo il comando");
+			IOConsole.mostraMessaggio("Comando sconosciuto, inserisci di nuovo il comando");
 		if (this.partita.vinta()) {
-			System.out.println("Hai vinto!");
+			IOConsole.mostraMessaggio("Hai vinto!");
 			return true;
 		} else {
 			return false;
@@ -108,7 +108,7 @@ public class DiaDia {
 	    private void prendi(String nomeAttrezzo) {	    	
 	    	
 	        if (nomeAttrezzo == null) {
-	            System.out.println("Cosa vuoi prendere?");
+	        	IOConsole.mostraMessaggio("Cosa vuoi prendere?");
 	        }
 	        
 	        Attrezzo attrezzoDaPrendere = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
@@ -116,31 +116,28 @@ public class DiaDia {
 	        if (attrezzoDaPrendere != null) {
 	            if (this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzoDaPrendere)) {
 	                this.partita.getLabirinto().getStanzaCorrente().removeAttrezzo(attrezzoDaPrendere);
-	                System.out.println("Hai preso: " + attrezzoDaPrendere.getNome());
+	                IOConsole.mostraMessaggio("Hai preso: " + attrezzoDaPrendere.getNome());
 	            } else {
-	                System.out.println("La borsa è troppo piena per prendere questo attrezzo.");
+	            	IOConsole.mostraMessaggio("La borsa è troppo piena per prendere questo attrezzo.");
 	            }
 	        } else {
-	            System.out.println("L'attrezzo '" + nomeAttrezzo + "' non è presente in questa stanza.");
+	        	IOConsole.mostraMessaggio("L'attrezzo '" + nomeAttrezzo + "' non è presente in questa stanza.");
 	        }
 	    }
 
 	    private void posa(String nomeAttrezzo) {
-	        if (nomeAttrezzo == null) {
-	            System.out.println("Cosa vuoi posare?");
-	        }
-	        //TODO completa gli errori
+	        
 	        Attrezzo attrezzoDaPosare = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
 	        if (attrezzoDaPosare != null) {
 	            Stanza stanzaCorrente = this.partita.getLabirinto().getStanzaCorrente();
 	            if (stanzaCorrente.addAttrezzo(attrezzoDaPosare)) {
 	                this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-	                System.out.println("Hai posato: " + attrezzoDaPosare.getNome());
+	                IOConsole.mostraMessaggio("Hai posato: " + attrezzoDaPosare.getNome());
 	            } else {
-	                System.out.println("Questa stanza è troppo piena per posare l'attrezzo.");
+	            	IOConsole.mostraMessaggio("Questa stanza è troppo piena per posare l'attrezzo.");
 	            }
 	        } else {
-	            System.out.println("L'attrezzo '" + nomeAttrezzo + "' non è presente nella borsa.");
+	        	IOConsole.mostraMessaggio("L'attrezzo '" + nomeAttrezzo + "' non è presente nella borsa.");
 	        }
 	    }
 
@@ -149,8 +146,8 @@ public class DiaDia {
 	 */
 	private void aiuto() {
 		for(int i=0; i< elencoComandi.length; i++)
-			System.out.print(elencoComandi[i]+" ");
-	System.out.println();
+			IOConsole.mostraMessaggio(elencoComandi[i]+" ");
+		IOConsole.mostraMessaggio("");
 	}
 
 	/**
@@ -159,25 +156,18 @@ public class DiaDia {
 	 */
 	private void vai(String direzione) {
 		
-		if(direzione==null) {
-			System.out.println("Dove vuoi andare ?");
-			
-			//TODO capisci che succede in vai ()
-		}
-		
 		Stanza prossimaStanza = null;
 
 		prossimaStanza = this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(direzione);
 
 		if (prossimaStanza == null)
-			System.out.println("Direzione inesistente");
+			IOConsole.mostraMessaggio("Direzione inesistente");
 		else {
 			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
 			int cfu = this.partita.getGiocatore().getCfu();
 			this.partita.getGiocatore().setCfu(--cfu);
 		}
-		System.out.println(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
-		//scannerdiDirezione.close();
+		IOConsole.mostraMessaggio(this.partita.getLabirinto().getStanzaCorrente().getDescrizione());
 		return;
 	}
 
@@ -185,7 +175,7 @@ public class DiaDia {
 	 * Comando "Fine".
 	 */
 	private void fine() {
-		System.out.println("Grazie di aver giocato!");  // si desidera smettere
+		IOConsole.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
 	}
 
 	public static void main(String[] args) {
