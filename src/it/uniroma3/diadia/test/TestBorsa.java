@@ -33,3 +33,4 @@ public class TestBorsa {
 	    assertEquals(attrezzo, attrezzoRimosso);
 	}
 }
+

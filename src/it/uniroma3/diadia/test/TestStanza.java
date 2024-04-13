@@ -47,3 +47,4 @@ public class TestStanza {
         assertEquals(0, s.getNumeroAttrezzi());
     }
 }
+

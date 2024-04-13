@@ -27,3 +27,4 @@ public class Giocatore {
 		this.cfu = cfu;		
 	}
 }
+

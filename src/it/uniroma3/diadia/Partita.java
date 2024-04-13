@@ -64,3 +64,4 @@ public class Partita {
 		return this.giocatore;
 	}
 }
+

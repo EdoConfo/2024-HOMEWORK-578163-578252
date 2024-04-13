@@ -26,3 +26,4 @@ public class TestLabirinto {
 	    assertNotNull(l.getStanzaFinale());
 	}
 }
+

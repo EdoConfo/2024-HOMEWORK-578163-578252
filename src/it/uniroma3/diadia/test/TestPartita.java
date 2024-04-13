@@ -36,3 +36,4 @@ public class TestPartita {
 		assertEquals(s, p.getLabirinto().getStanzaCorrente());
 	}
 }
+

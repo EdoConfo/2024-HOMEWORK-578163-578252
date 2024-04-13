@@ -26,3 +26,4 @@ public class TestGiocatore {
         assertEquals(15, g.getCfu());
     }
 }
+
