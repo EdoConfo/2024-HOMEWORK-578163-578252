@@ -7,8 +7,10 @@ import it.uniroma3.diadia.ambienti.Stanza;
 public class ComandoVai implements Comando{
 	private String direzione;
 
+	public ComandoVai() {}
+	
 	public ComandoVai(String direzione) {
-	this.direzione = direzione;
+		this.direzione = direzione;
 	}
 	
 	/**
@@ -19,7 +21,7 @@ public class ComandoVai implements Comando{
 		Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 		Stanza prossimaStanza = null;
 		if(this.direzione == null) {
-			IOConsole.mostraMessaggio("Dove vuoi andare?"
+			IOConsole.mostraMessaggio("Dove vuoi andare?\n"
 					                + "Devi specificare una direzione");
 			return;
 		}
@@ -30,8 +32,9 @@ public class ComandoVai implements Comando{
 		}
 
 		partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-		IOConsole.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
-		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1); 
+		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
+		
+		IOConsole.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
 	}
 	
 	/**
@@ -49,6 +52,6 @@ public class ComandoVai implements Comando{
 	
 	@Override
 	public String getNome() {
-		return NOME;
+		return "vai";
 	}
 }

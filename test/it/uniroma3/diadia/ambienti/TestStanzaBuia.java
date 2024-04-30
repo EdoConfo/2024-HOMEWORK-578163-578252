@@ -1,10 +1,10 @@
-package it.uniroma3.diadia.test.comandi;
+package it.uniroma3.diadia.ambienti;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestComandoPosa {
+public class TestStanzaBuia {
 
 	@Test
 	public void test() {

@@ -28,8 +28,6 @@ public class DiaDia {
 			"o regalarli se pensi che possano ingraziarti qualcuno.\n\n"+
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 
-	static final private String[] elencoComandi = {"vai <direzione>", "aiuto", "prendi <nomeAttrezzo>", "posa <nomeAttrezzo>", "fine"};
-
 	private Partita partita;
 
 	public DiaDia() {
@@ -57,8 +55,8 @@ public class DiaDia {
 		comandoDaEseguire.esegui(this.partita);
 		if (this.partita.vinta())
 			IOConsole.mostraMessaggio("Hai vinto!");
-		if (!this.partita.giocatoreIsVivo())
-			IOConsole.mostraMessaggio("Hai esaurito i CFU...");
+		//if (!this.partita.giocatoreIsVivo())
+			//IOConsole.mostraMessaggio("Hai esaurito i CFU...");
 		return this.partita.isFinita();
 	}
 	

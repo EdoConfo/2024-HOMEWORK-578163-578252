@@ -1,4 +1,4 @@
-package it.uniroma3.diadia.test.giocatore;
+package it.uniroma3.diadia.giocatore;
 
 import static org.junit.Assert.*;
 
