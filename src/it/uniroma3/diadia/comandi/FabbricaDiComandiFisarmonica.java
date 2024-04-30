@@ -2,7 +2,8 @@ package it.uniroma3.diadia.comandi;
 
 import java.util.*;
 
-public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{	
+public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
+	
 	@Override
 	public Comando costruisciComando(String istruzione) {
 		Scanner scannerDiParole = new Scanner(istruzione);
