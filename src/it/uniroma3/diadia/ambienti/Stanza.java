@@ -125,7 +125,7 @@ public class Stanza {
     	risultato.append("\nAttrezzi nella stanza: ");
     	for (Attrezzo attrezzo : this.attrezzi) {
     		if(attrezzo!=null){
-    		risultato.append(attrezzo.toString()).append(" ");
+    			risultato.append(attrezzo.toString()).append(" ");
     		}
     	}
     	return risultato.toString();
@@ -157,7 +157,7 @@ public class Stanza {
 		
 		Attrezzo attrezzoCercato = null;	
 		
-		for (int i= 0; i < this.numeroAttrezzi; i++) {
+		for (int i = 0; i < this.numeroAttrezzi; i++) {
 			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
 				attrezzoCercato = this.attrezzi[i];
 				if(attrezzoCercato != null) {		//se trovi l' attrezzo, lo prendi subito
