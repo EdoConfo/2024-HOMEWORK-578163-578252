@@ -3,9 +3,6 @@ package it.uniroma3.diadia.comandi;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import it.uniroma3.diadia.*;
-import it.uniroma3.diadia.attrezzi.*;
-import it.uniroma3.diadia.ambienti.*;
 
 public class TestComandoVai {
 	

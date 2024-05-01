@@ -3,8 +3,6 @@ package it.uniroma3.diadia.giocatore;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import it.uniroma3.diadia.giocatore.Borsa;
 import it.uniroma3.diadia.attrezzi.*;
 
 public class TestBorsa {
