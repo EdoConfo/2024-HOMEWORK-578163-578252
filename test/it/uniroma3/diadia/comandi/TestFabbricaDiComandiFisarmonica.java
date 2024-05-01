@@ -6,8 +6,9 @@ import org.junit.Test;
 
 public class TestFabbricaDiComandiFisarmonica {
 
+		Comando c = new Comando();
 	@Test
-	public void test() {
+	public void testComandoInesistente() {
 		fail("Not yet implemented");
 	}
 

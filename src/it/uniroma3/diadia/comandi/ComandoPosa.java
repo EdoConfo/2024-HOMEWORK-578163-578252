@@ -57,5 +57,4 @@ public class ComandoPosa implements Comando{
 	public void setIo(IO io) {
 		this.io = io;
 	}
-
 }
