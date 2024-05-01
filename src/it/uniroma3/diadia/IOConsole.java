@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 
 public class IOConsole implements IO{
+	
+	public IOConsole() {}
+	
 	Scanner scannerDiLinee = new Scanner(System.in);
 	
 	@Override
