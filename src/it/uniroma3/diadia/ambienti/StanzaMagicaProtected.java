@@ -2,7 +2,7 @@ package it.uniroma3.diadia.ambienti;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class StanzaMagicaProtected extends StanzaProtected {
+public class StanzaMagicaProtected extends Stanza{
 	
 	protected static final int SOGLIA_MAGICA_DEFAULT = 3;
     protected int contatoreAttrezziPosati;
@@ -23,7 +23,10 @@ public class StanzaMagicaProtected extends StanzaProtected {
         contatoreAttrezziPosati++;
         if (contatoreAttrezziPosati > sogliaMagica)
             attrezzo = modificaAttrezzo(attrezzo);
-        return super.addAttrezzo(attrezzo);
+        if(nome2attrezzo.size() >= NUMERO_MASSIMO_ATTREZZI)
+        	return false;
+        nome2attrezzo.put(attrezzo.getNome(), attrezzo);
+        return true;
     }
 
     private Attrezzo modificaAttrezzo(Attrezzo attrezzo) {
