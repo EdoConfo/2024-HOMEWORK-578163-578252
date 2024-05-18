@@ -3,7 +3,7 @@ import it.uniroma3.diadia.attrezzi.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LabirintoBuilder {
+public class LabirintoBuilder extends Labirinto{
 	
 	private Labirinto labirinto;
 	private Stanza ultimaAggiunta;
@@ -17,6 +17,7 @@ public class LabirintoBuilder {
 	public LabirintoBuilder addStanzaIniziale(String nomeStanzaIniziale) {
 		Stanza iniziale = new Stanza(nomeStanzaIniziale);
 		this.labirinto.setStanzaIniziale(iniziale);
+		this.labirinto.setStanzaCorrente(iniziale);
 		this.aggiungiAMappaEAggiornaUltima(iniziale);
 		return this;
 	}
@@ -71,4 +72,6 @@ public class LabirintoBuilder {
 		this.ultimaAggiunta = stanza;
 		this.nome2stanza.put(stanza.getNome(), stanza);
 	}
+	
+
 }

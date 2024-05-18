@@ -3,6 +3,7 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.ambienti.StanzaBloccata;
 
 public class ComandoVai implements Comando{
 	private String direzione;
@@ -32,14 +33,34 @@ public class ComandoVai implements Comando{
 			this.io.mostraMessaggio("Direzione inesistente");
 			return;
 		}
-
-		partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
+		if(prossimaStanza instanceof StanzaBloccata){
+			System.out.println("pallesudate");
+			System.out.println(prossimaStanza.getClass().getSimpleName());
+			prossimaStanza.getClass().getSimpleName();
+			StanzaBloccata s = (StanzaBloccata) prossimaStanza;
+			if(!(partita.getGiocatore().getBorsa().hasAttrezzo(s.getAttrezzoSbloccante()))){
+				io.mostraMessaggio(s.getDescrizione());
+			}
+			else {
+				partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+				partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
+				
+				if(!(partita.getLabirinto().getStanzaCorrente() == partita.getLabirinto().getStanzaVincente()))
+					this.io.mostraMessaggio(s.getDescrizione(partita));
+				else
+					this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
+			}
+		}
+		else {
+			partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+			partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
+			
+			if(!(partita.getLabirinto().getStanzaCorrente() == partita.getLabirinto().getStanzaVincente()))
+				this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
+			else
+				this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
+		}
 		
-		if(!(partita.getLabirinto().getStanzaCorrente() == partita.getLabirinto().getStanzaFinale()))
-			this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
-		else
-			this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
 	}
 	
 	/**

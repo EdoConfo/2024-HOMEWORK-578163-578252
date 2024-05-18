@@ -1,8 +1,8 @@
 package it.uniroma3.diadia.ambienti;
 import it.uniroma3.diadia.attrezzi.*;
 
-public class Labirinto {
-	private Stanza stanzaCorrente;
+public class Labirinto{
+	protected Stanza stanzaCorrente;
 	private Stanza stanzaIniziale;
 	private Stanza stanzaVincente;
 	

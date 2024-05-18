@@ -1,4 +1,5 @@
 package it.uniroma3.diadia.ambienti;
+import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import java.util.Map;
 import java.util.HashMap;
@@ -70,6 +71,10 @@ public class Stanza {
      */
     public String getDescrizione() {
         return this.toString();
+    }
+    
+    public String getDescrizione(Partita partita) {
+    	return this.toString();
     }
 
     /**
