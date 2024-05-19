@@ -30,5 +30,6 @@ public class TestBorsa {
 	    assertNull(b.getAttrezzo("biscotto"));
 	    assertEquals(attrezzo, attrezzoRimosso);
 	}
+	
 }
 

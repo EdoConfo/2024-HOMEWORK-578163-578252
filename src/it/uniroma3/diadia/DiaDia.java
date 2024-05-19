@@ -71,31 +71,31 @@ public class DiaDia {
 	public static void main(String[] args) {
 		IO io = new IOConsole();
 		Labirinto labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("Osso", 2)
-				.addStanzaVincente("Biblioteca")
-				.addStanzaBuia("Labortatorio", "Lanterna")
-				.addStanzaBloccata("AulaN10", "nord", "Chiave")
-				.addAttrezzo("Lanterna", 3)
-				.addStanzaMagica("AulaN11")
-				.addAttrezzo("Chiave", 1)
-				
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Biblioteca", "Atrio", "sud")
-				
-				.addAdiacenza("Atrio", "AulaN10", "sud")
-				.addAdiacenza("AulaN10", "Atrio", "nord")
-				
-				.addAdiacenza("Atrio", "Labortatorio", "ovest")
-				.addAdiacenza("Labortatorio", "Atrio", "est")
-				
-				.addAdiacenza("Atrio", "AulaN11", "est")
-				.addAdiacenza("AulaN11", "Atrio", "ovest")
-				
-				.addAdiacenza("Labortatorio", "AulaN11", "ovest")
-				.addAdiacenza("AulaN11", "Labortatorio", "est")
-				
-				.getLabirinto();
+			.addStanzaIniziale("Atrio")
+			.addAttrezzo("Osso", 2)
+			.addStanzaVincente("Biblioteca")
+			.addStanzaBuia("Labortatorio", "Lanterna")
+			.addStanzaBloccata("AulaN10", "nord", "Chiave")
+			.addAttrezzo("Lanterna", 3)
+			.addStanzaMagica("AulaN11")
+			.addAttrezzo("Chiave", 1)
+			
+			.addAdiacenza("Atrio", "Biblioteca", "nord")
+			.addAdiacenza("Biblioteca", "Atrio", "sud")
+			
+			.addAdiacenza("Atrio", "AulaN10", "sud")
+			.addAdiacenza("AulaN10", "Atrio", "nord")
+			
+			.addAdiacenza("Atrio", "Labortatorio", "ovest")
+			.addAdiacenza("Labortatorio", "Atrio", "est")
+			
+			.addAdiacenza("Atrio", "AulaN11", "est")
+			.addAdiacenza("AulaN11", "Atrio", "ovest")
+			
+			.addAdiacenza("Labortatorio", "AulaN11", "ovest")
+			.addAdiacenza("AulaN11", "Labortatorio", "est")
+			
+			.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
 		gioco.gioca();
 	}

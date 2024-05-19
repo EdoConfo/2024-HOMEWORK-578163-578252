@@ -11,6 +11,7 @@ import it.uniroma3.diadia.ambienti.*;
 public class TestComandoPrendi {
 
 	ComandoPrendi cpr = new ComandoPrendi();
+	Labirinto labirinto = new Labirinto();
 	
 	@Test
 	public void testComandoPrendiSetParametroNull() {
@@ -30,7 +31,7 @@ public class TestComandoPrendi {
 	
     @Test
     public void testPrendiAttrezzoPresente() {
-        Partita partita = new Partita();
+        Partita partita = new Partita(labirinto);
         Stanza stanza = new Stanza("stanza");
         Attrezzo attrezzo = new Attrezzo("martello", 1);
         stanza.addAttrezzo(attrezzo);
@@ -47,7 +48,7 @@ public class TestComandoPrendi {
 
     @Test
     public void testPrendiAttrezzoNonPresente() {
-        Partita partita = new Partita();
+        Partita partita = new Partita(labirinto);
         Stanza stanza = new Stanza("stanza");
         partita.getLabirinto().setStanzaCorrente(stanza);
 
@@ -62,7 +63,7 @@ public class TestComandoPrendi {
 
     @Test
     public void testPrendiBorsaPiena() {
-        Partita partita = new Partita();
+        Partita partita = new Partita(labirinto);
         Stanza stanza = new Stanza("stanza");
         Attrezzo attrezzo = new Attrezzo("martello", 1);
         stanza.addAttrezzo(attrezzo);

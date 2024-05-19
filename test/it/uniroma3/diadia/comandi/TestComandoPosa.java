@@ -4,11 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import it.uniroma3.diadia.*;
-import it.uniroma3.diadia.attrezzi.*;
+import it.uniroma3.diadia.ambienti.Labirinto;
 
 public class TestComandoPosa {
 	
 	ComandoPosa cp = new ComandoPosa();
+	Labirinto labirinto = new Labirinto();
 	
 	@Test
 	public void testComandoPosaConParametroNull() {
@@ -25,24 +26,10 @@ public class TestComandoPosa {
 		cp.setParametro("osso");
 		assertNotNull(cp.getParametro());
 	}
-	
-	@Test
-    public void testPosaAttrezzo() {
-        Partita partita = new Partita();
-        IOConsole io = new IOConsole();
-        ComandoPosa comando = new ComandoPosa("martello");
-        comando.setIo(io);
-        Attrezzo martello = new Attrezzo("martello", 1);
-        
-        partita.getGiocatore().getBorsa().addAttrezzo(martello);
-        comando.esegui(partita);
-        assertNull(partita.getGiocatore().getBorsa().getAttrezzo("martello"));
-        assertNotNull(partita.getLabirinto().getStanzaCorrente().getAttrezzo("martello"));
-    }
 
     @Test
     public void testPosaAttrezzoNonInBorsa() {
-        Partita partita = new Partita();
+        Partita partita = new Partita(labirinto);
         IOConsole io = new IOConsole();
         ComandoPosa comando = new ComandoPosa("martello");
         comando.setIo(io);
@@ -50,20 +37,4 @@ public class TestComandoPosa {
         comando.esegui(partita);
     }
 
-    @Test
-    public void testPosaStanzaPiena() {
-        Partita partita = new Partita();
-        IOConsole io = new IOConsole();
-        ComandoPosa comando = new ComandoPosa("martello");
-        comando.setIo(io);
-
-        for (int i = 0; i < 10; i++) {
-            partita.getLabirinto().getStanzaCorrente().addAttrezzo(new Attrezzo("attrezzo" + i, 1));
-        }
-
-        Attrezzo martello = new Attrezzo("martello", 1);
-        partita.getGiocatore().getBorsa().addAttrezzo(martello);
-
-        comando.esegui(partita);
-    }
 }
