@@ -1,38 +1,74 @@
 package it.uniroma3.diadia;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
+import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
+
 
 public class TestPartita {
 	
-	Partita p = new Partita();
-	Stanza s = new Stanza("Stanza");
-	Attrezzo a = new Attrezzo("spada", 15);
+	private Partita partita;
+	private Labirinto labirinto;
 	
-	@Test
-	public void testGetStanzaVincente() {
-		assertEquals("Biblioteca", p.getLabirinto().getStanzaFinale().getNome());
+	@Before
+	public void setUp() {
+		this.labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("iniziale")
+				.addStanzaVincente("vincente")
+				.getLabirinto();
+		this.partita = new Partita(this.labirinto);
 	}
 	
 	@Test
-	public void testGetStanzaIniziale() {
-		assertEquals("Atrio", p.getLabirinto().getStanzaIniziale().getNome());
+	public void testGetStanzaVincenteNotNull() {
+		assertNotNull(this.partita.getLabirinto().getStanzaVincente());
 	}
 	
 	@Test
-	public void testIsPersa() {
-		p.getGiocatore().setCfu(0);
-		assertEquals(0, p.getGiocatore().getCfu());
+	public void testVintaSeStanzaCorrenteEVincente() {
+		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		assertTrue(this.partita.vinta());
 	}
 	
 	@Test
-	public void testSetStanzaCorrente() {
-		p.getLabirinto().setStanzaCorrente(s);
-		assertEquals(s, p.getLabirinto().getStanzaCorrente());
+	public void testNonVintaSeStanzaCorrenteNonEVincente() {
+		this.partita.getLabirinto().setStanzaCorrente(new Stanza("NonVincente"));
+		assertFalse(this.partita.vinta());
+	}
+	
+	@Test
+	public void testNonVintaInizioPartita() {
+		assertFalse(this.partita.vinta());
+	}
+	
+	@Test
+	public void testFinitaSeVinta() {
+		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		assertTrue(this.partita.isFinita());
+	}
+	
+	@Test
+	public void testFinitaSeEsplicitamenteSettato() {
+		this.partita.setFinita();
+		assertTrue(this.partita.isFinita());
+	}
+	
+	@Test
+	public void testFinitaSeCFUFiniti() {
+		this.partita.getGiocatore().setCfu(0);
+		assertTrue(this.partita.isFinita());
+	}
+	
+	@Test
+	public void testNonFinitaInizioPartita() {
+		assertFalse(this.partita.isFinita());
 	}
 }
-
