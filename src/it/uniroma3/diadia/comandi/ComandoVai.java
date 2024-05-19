@@ -1,9 +1,11 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBloccata;
+import it.uniroma3.diadia.ambienti.StanzaBuia;
 
 public class ComandoVai implements Comando{
 	private String direzione;
@@ -34,32 +36,31 @@ public class ComandoVai implements Comando{
 			return;
 		}
 		if(prossimaStanza instanceof StanzaBloccata){
-			System.out.println("pallesudate");
-			System.out.println(prossimaStanza.getClass().getSimpleName());
-			prossimaStanza.getClass().getSimpleName();
-			StanzaBloccata s = (StanzaBloccata) prossimaStanza;
-			if(!(partita.getGiocatore().getBorsa().hasAttrezzo(s.getAttrezzoSbloccante()))){
-				io.mostraMessaggio(s.getDescrizione());
+			StanzaBloccata stanzaBloccata = (StanzaBloccata) prossimaStanza;
+			if(!(partita.getGiocatore().getBorsa().hasAttrezzo(stanzaBloccata.getAttrezzoSbloccante()))){
+				this.io.mostraMessaggio(stanzaBloccata.getDescrizione(partita));
+				return;
 			}
-			else {
-				partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-				partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
-				
-				if(!(partita.getLabirinto().getStanzaCorrente() == partita.getLabirinto().getStanzaVincente()))
-					this.io.mostraMessaggio(s.getDescrizione(partita));
-				else
-					this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
+			this.io.mostraMessaggio("Hai usato " + stanzaBloccata.getAttrezzoSbloccante() + " per sbloccare la stanza");
+		}
+		
+		if(prossimaStanza instanceof StanzaBuia){
+			StanzaBuia stanzaBuia = (StanzaBuia) prossimaStanza;
+			if(!(partita.getGiocatore().getBorsa().hasAttrezzo(stanzaBuia.getAttrezzoLuminoso()))){
+				this.io.mostraMessaggio(stanzaBuia.getDescrizione(partita));
+				return;
 			}
+			this.io.mostraMessaggio("Hai usato " + stanzaBuia.getAttrezzoLuminoso() + " per illuminare la stanza");
 		}
-		else {
-			partita.getLabirinto().setStanzaCorrente(prossimaStanza);
-			partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
-			
-			if(!(partita.getLabirinto().getStanzaCorrente() == partita.getLabirinto().getStanzaVincente()))
-				this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
-			else
-				this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
-		}
+
+		partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
+		
+		if(!(partita.getLabirinto().getStanzaCorrente() == partita.getLabirinto().getStanzaVincente()))
+			this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
+		else
+			this.io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getNome());
+		prossimaStanza = null;
 		
 	}
 	
