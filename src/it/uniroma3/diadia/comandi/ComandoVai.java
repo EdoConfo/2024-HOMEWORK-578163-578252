@@ -6,7 +6,7 @@ import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBloccata;
 import it.uniroma3.diadia.ambienti.StanzaBuia;
 
-public class ComandoVai implements Comando{
+public class ComandoVai extends AbstractComando{
 	private String direzione;
 	private IO io;
 

@@ -6,11 +6,11 @@ import it.uniroma3.diadia.IO;
 public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 	
 	@Override
-	public Comando costruisciComando(String istruzione, IO io) {
+	public AbstractComando costruisciComando(String istruzione, IO io) {
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
 		String parametro = null;
-		Comando comando = null;
+		AbstractComando comando = null;
 		
 		if (scannerDiParole.hasNext())
 			nomeComando = scannerDiParole.next();// prima parola: nome del comando
