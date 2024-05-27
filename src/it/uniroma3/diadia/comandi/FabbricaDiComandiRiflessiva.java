@@ -1,27 +1,27 @@
 package it.uniroma3.diadia.comandi;
 
+import java.util.Scanner;
+
 import it.uniroma3.diadia.IO;
 
 public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 	
 	public AbstractComando costruisciComando(String istruzione, IO io){
 		
+		Scanner scanner = new Scanner(istruzione);
 		String nomeComando = null;
 		String parametro = null;
 		AbstractComando comando = null;
 		
-		io.leggi(istruzione);
-		if (io.hasNext())
-			nomeComando = io.leggiParola();//prima parola: nome del comando
-		if (io.hasNext())
-			parametro = io.leggiParola();//seconda parola: eventuale parametro
+		if (scanner.hasNext())
+			nomeComando = scanner.next();
+		if (scanner.hasNext())
+			parametro = scanner.next();
 		StringBuilder nomeClasse = new StringBuilder("it.uniroma3.diadia.comandi.Comando");
 		
 		try {
 			nomeClasse.append( Character.toUpperCase(nomeComando.charAt(0)) );
-			// es. nomeClasse: ‘it.uniroma3.diadia.comandi.ComandoV’
 			nomeClasse.append( nomeComando.substring(1) ) ;
-			// es. nomeClasse: ‘it.uniroma3.diadia.comandi.ComandoVai’
 			comando = (AbstractComando)Class.forName(nomeClasse.toString()).newInstance();
 		} catch (Exception e) {
 			comando = new ComandoNonValido();
@@ -29,6 +29,7 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 		
 		comando.setIO(io);
 		comando.setParametro(parametro);
+		scanner.close();
 		
 		return comando;
 	}

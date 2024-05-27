@@ -7,6 +7,7 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 	
 	@Override
 	public AbstractComando costruisciComando(String istruzione, IO io) {
+		
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
 		String parametro = null;
