@@ -17,6 +17,7 @@ public class FabbricaDiComandiRiflessiva implements FabbricaDiComandi {
 			nomeComando = scanner.next();
 		if (scanner.hasNext())
 			parametro = scanner.next();
+		
 		StringBuilder nomeClasse = new StringBuilder("it.uniroma3.diadia.comandi.Comando");
 		
 		try {

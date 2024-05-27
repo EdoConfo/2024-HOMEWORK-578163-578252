@@ -4,7 +4,7 @@ import it.uniroma3.diadia.Partita;
 
 public class ComandoNonValido extends AbstractComando{
 	
-	private static final String NOME = "Non Valido";
+	private static final String NOME = "nonValido";
 	
 	public ComandoNonValido() {
 		super.setNome(NOME);
