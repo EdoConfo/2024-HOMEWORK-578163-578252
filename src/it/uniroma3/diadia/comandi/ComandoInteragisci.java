@@ -17,7 +17,7 @@ public class ComandoInteragisci extends AbstractComando{
 	@Override
 	public void esegui(Partita partita) {
 		AbstractPersonaggio personaggio;
-		personaggio = partita.getStanzaCorrente().getPersonaggio();
+		personaggio = partita.getLabirinto().getStanzaCorrente().getPersonaggio();
 		if (personaggio!=null) {
 			this.messaggio = personaggio.agisci(partita);
 			super.getIO().mostraMessaggio(this.messaggio);

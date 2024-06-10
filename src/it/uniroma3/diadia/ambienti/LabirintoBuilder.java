@@ -29,7 +29,7 @@ public class LabirintoBuilder extends Labirinto{
 		return this;
 	}
 	
-	public LabirintoBuilder addAdiacenza(String partenza, String adiacente, String direzione) {
+	public LabirintoBuilder addAdiacenza(String partenza, String adiacente, Direzione direzione) {
 		Stanza stanzaPartenza = this.nome2stanza.get(partenza);
 		Stanza stanzaAdiacente = this.nome2stanza.get(adiacente);
 		stanzaPartenza.impostaStanzaAdiacente(direzione, stanzaAdiacente);

@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzione;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.ambienti.StanzaBloccata;
 import it.uniroma3.diadia.ambienti.StanzaBuia;
@@ -8,7 +9,7 @@ import it.uniroma3.diadia.ambienti.StanzaBuia;
 public class ComandoVai extends AbstractComando{
 	
 	private static final String NOME = "vai";
-	private String direzione;
+	private Direzione direzione;
 
 	public ComandoVai() {
 		super.setNome(NOME);
@@ -22,7 +23,7 @@ public class ComandoVai extends AbstractComando{
 		if(this.direzione == null) {
 			super.getIO().mostraMessaggio("Dove vuoi andare?\n"
 					         + "Devi specificare una direzione");
-			this.direzione = super.getIO().leggiRiga();
+			this.direzione = super.getIO().leggiRiga();					//TODO da correggere concettualmente, direzione ora è un enum non più una stringa
 		}
 		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
 		if (prossimaStanza == null) {

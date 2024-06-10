@@ -1,6 +1,8 @@
 package it.uniroma3.diadia.ambienti;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collection;
@@ -24,7 +26,8 @@ public class Stanza {
 	
 	private String nome;
 	protected Map<String, Attrezzo> nome2attrezzo;
-	private Map<String, Stanza> direzione2stanzaAdiacente;
+	private Map<Direzione, Stanza> direzione2stanzaAdiacente;
+	public AbstractPersonaggio personaggio;
 	
     
     /**
@@ -43,7 +46,7 @@ public class Stanza {
      * @param direzione direzione in cui sara' posta la stanza adiacente.
      * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
      */
-    public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
+    public void impostaStanzaAdiacente(Direzione direzione, Stanza stanza) {
         if(this.direzione2stanzaAdiacente.size() >= NUMERO_MASSIMO_DIREZIONI)
         	return;
         this.direzione2stanzaAdiacente.put(direzione, stanza);
@@ -53,7 +56,7 @@ public class Stanza {
      * Restituisce la stanza adiacente nella direzione specificata
      * @param direzione
      */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzione direzione) {
         return this.direzione2stanzaAdiacente.get(direzione);
 	}
 
@@ -143,7 +146,11 @@ public class Stanza {
 	    	return true;
 	}
 
-	public Set<String> getDirezioni(){
+	public Set<Direzione> getDirezioni(){
 		return this.direzione2stanzaAdiacente.keySet();
+	}
+	
+	public AbstractPersonaggio getPersonaggio() {
+		return this.personaggio;
 	}
 }
