@@ -20,11 +20,21 @@ public class ComandoVai extends AbstractComando{
 		Stanza stanzaCorrente = partita.getLabirinto().getStanzaCorrente();
 		Stanza prossimaStanza = null;
 		
-		if(this.direzione == null) {
+		if(super.getParametro() == null) {
 			super.getIO().mostraMessaggio("Dove vuoi andare?\n"
 					         + "Devi specificare una direzione");
-			this.direzione = super.getIO().leggiRiga();					//TODO da correggere concettualmente, direzione ora è un enum non più una stringa
+			return;
 		}
+		
+		try {
+			direzione = Direzione.valueOf(super.getParametro().toUpperCase());
+		} catch (IllegalArgumentException e) {
+			super.getIO().mostraMessaggio("Direzione inesistente");
+			return;
+		}
+		
+		//System.out.print("Direzione: " + this.direzione.toString());
+		
 		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.direzione);
 		if (prossimaStanza == null) {
 			super.getIO().mostraMessaggio("Direzione inesistente");

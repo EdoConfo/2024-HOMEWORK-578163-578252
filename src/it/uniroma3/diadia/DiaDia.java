@@ -54,6 +54,7 @@ public class DiaDia {
 		AbstractComando comandoDaEseguire;
 		FabbricaDiComandi factory = new FabbricaDiComandiRiflessiva();
 		comandoDaEseguire = factory.costruisciComando(istruzione, this.io);
+		
 		comandoDaEseguire.esegui(this.partita);
 		if (this.partita.vinta()) {
 			io.mostraMessaggio("Hai vinto!");
@@ -80,20 +81,20 @@ public class DiaDia {
 			.addStanzaMagica("AulaN11")
 			.addAttrezzo("Chiave", 1)
 			
-			.addAdiacenza("Atrio", "Biblioteca", "nord")
-			.addAdiacenza("Biblioteca", "Atrio", "sud")
+			.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
+			.addAdiacenza("Biblioteca", "Atrio", Direzione.SUD)
 			
-			.addAdiacenza("Atrio", "AulaN10", "sud")
-			.addAdiacenza("AulaN10", "Atrio", "nord")
+			.addAdiacenza("Atrio", "AulaN10", Direzione.SUD)
+			.addAdiacenza("AulaN10", "Atrio", Direzione.NORD)
 			
-			.addAdiacenza("Atrio", "Labortatorio", "ovest")
-			.addAdiacenza("Labortatorio", "Atrio", "est")
+			.addAdiacenza("Atrio", "Labortatorio", Direzione.OVEST)
+			.addAdiacenza("Labortatorio", "Atrio", Direzione.EST)
 			
-			.addAdiacenza("Atrio", "AulaN11", "est")
-			.addAdiacenza("AulaN11", "Atrio", "ovest")
+			.addAdiacenza("Atrio", "AulaN11", Direzione.EST)
+			.addAdiacenza("AulaN11", "Atrio", Direzione.OVEST)
 			
-			.addAdiacenza("Labortatorio", "AulaN11", "ovest")
-			.addAdiacenza("AulaN11", "Labortatorio", "est")
+			.addAdiacenza("Labortatorio", "AulaN11", Direzione.OVEST)
+			.addAdiacenza("AulaN11", "Labortatorio", Direzione.EST)
 			
 			.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
