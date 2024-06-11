@@ -150,6 +150,10 @@ public class Stanza {
 		return this.direzione2stanzaAdiacente.keySet();
 	}
 	
+	public void setPersonaggio(AbstractPersonaggio personaggio) {
+		this.personaggio = personaggio;
+	}
+	
 	public AbstractPersonaggio getPersonaggio() {
 		return this.personaggio;
 	}

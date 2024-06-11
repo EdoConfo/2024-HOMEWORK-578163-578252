@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.personaggi.*;
 
 public class Labirinto{
 	protected Stanza stanzaCorrente;
@@ -96,6 +97,30 @@ public class Labirinto{
 		public LabirintoBuilder addStanzaBloccata(String nome, String attrezzoSbloccante, String direzioneBloccata) {
 			Stanza stanza = new StanzaBloccata(nome, attrezzoSbloccante, direzioneBloccata);
 			this.aggiungiAMappaEAggiornaUltima(stanza);
+			return this;
+		}
+		
+		public LabirintoBuilder addCane(String nome, String presentaz, String ciboPreferito, Attrezzo attrezzoCustodito) {
+			Cane c = new Cane(nome, presentaz, ciboPreferito, attrezzoCustodito);
+			if(this.ultimaAggiunta == null)
+				return this;
+			this.ultimaAggiunta.setPersonaggio(c);
+			return this;
+		}
+		
+		public LabirintoBuilder addMago(String nome, String presentaz, Attrezzo attrezzo) {
+			Mago m = new Mago(nome, presentaz, attrezzo);
+			if(this.ultimaAggiunta == null)
+				return this;
+			this.ultimaAggiunta.setPersonaggio(m);
+			return this;
+		}
+		
+		public LabirintoBuilder addStrega(String nome, String presentaz) {
+			Strega s = new Strega(nome, presentaz);
+			if(this.ultimaAggiunta == null)
+				return this;
+			this.ultimaAggiunta.setPersonaggio(s);
 			return this;
 		}
 		
