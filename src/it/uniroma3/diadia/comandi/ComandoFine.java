@@ -15,4 +15,5 @@ public class ComandoFine extends AbstractComando {
 		partita.setFinita();
 		super.getIO().mostraMessaggio("Grazie di aver giocato!");
 	}
+
 }

@@ -17,6 +17,8 @@ public class CaricatoreLabirinto {
 	private final String  USCITE   = "Uscite:";
 	private final String  ESTREMI = "Estremi:";
 	private final String MAGICHE = "Magiche:";
+	private final String BUIE = "Buie";
+	private final String BLOCCATE = "Bloccate";
 	private BufferedReader reader;
 	private Set<String> stanze;
 	private int numeroLinea;
@@ -37,6 +39,8 @@ public class CaricatoreLabirinto {
 		try {
 			this.leggiStanze();
 			this.leggiStanzeMagiche();
+			this.leggiStanzeBuie();
+			this.leggiStanzeBloccate();
 			this.leggiInizialeEvincente();
 			this.leggiAttrezzi();
 			this.leggiUscite();
@@ -67,15 +71,15 @@ public class CaricatoreLabirinto {
 
 	private void leggiInizialeEvincente() throws FormatoFileNonValidoException {
 		String nomeStanzaIniziale = null;
-			nomeStanzaIniziale = this.leggiRiga(reader);
-			this.stanze.add(nomeStanzaIniziale);
-			this.builder.addStanzaIniziale(nomeStanzaIniziale);
-			String nomeStanzaVincente = this.leggiRiga(reader);
-			this.stanze.add(nomeStanzaVincente);
-			this.builder.addStanzaVincente(nomeStanzaVincente);
-			String token = this.leggiRiga(reader);
-			if (!token.equals(ATTREZZI))
-				throw new FormatoFileNonValidoException("Formato file non valido [" + this.numeroLinea + "]:" +ATTREZZI +" non trovato");		
+		nomeStanzaIniziale = this.leggiRiga(reader);
+		this.stanze.add(nomeStanzaIniziale);
+		this.builder.addStanzaIniziale(nomeStanzaIniziale);
+		String nomeStanzaVincente = this.leggiRiga(reader);
+		this.stanze.add(nomeStanzaVincente);
+		this.builder.addStanzaVincente(nomeStanzaVincente);
+		String token = this.leggiRiga(reader);
+		if (!token.equals(ATTREZZI))
+			throw new FormatoFileNonValidoException("Formato file non valido [" + this.numeroLinea + "]:" +ATTREZZI +" non trovato");		
 	}
 
 	private void leggiStanze() throws FormatoFileNonValidoException  {
@@ -92,7 +96,7 @@ public class CaricatoreLabirinto {
 			nomeStanza = this.leggiRiga(reader);
 		}
 	}
-
+	
 	private void leggiStanzeMagiche() throws FormatoFileNonValidoException  {
 		String nomeStanza = null;
 		nomeStanza = this.leggiRiga(reader);
@@ -100,6 +104,42 @@ public class CaricatoreLabirinto {
 			if (nomeStanza == null)
 				throw new FormatoFileNonValidoException("Termine inaspettata del file [" + this.numeroLinea + "].");
 			this.builder.addStanzaMagica(nomeStanza);
+			this.stanze.add(nomeStanza);
+			nomeStanza = this.leggiRiga(reader);
+		}
+	}
+	
+	private void leggiStanzeBuie() throws FormatoFileNonValidoException  {
+		String nomeStanza = null;
+		String attrezzoLuminoso = null;
+		String definizioneStanzaBuia = this.leggiRiga(reader);
+		
+		while (!nomeStanza.equals(ESTREMI)) {
+			Scanner scannerLinea = new Scanner(definizioneStanzaBuia);
+			nomeStanza = scannerLinea.next();
+			if (nomeStanza == null)
+				throw new FormatoFileNonValidoException("Termine inaspettata del file [" + this.numeroLinea + "].");
+			attrezzoLuminoso = scannerLinea.next();
+			this.builder.addStanzaBuia(nomeStanza, attrezzoLuminoso);
+			this.stanze.add(nomeStanza);
+			nomeStanza = this.leggiRiga(reader);
+		}
+	}
+	
+	private void leggiStanzeBloccate() throws FormatoFileNonValidoException  {
+		String nomeStanza = null;
+		String attrezzoSbloccante = null;
+		String direzioneBloccata = null;
+		String definizioneStanzaBloccata = this.leggiRiga(reader);
+		
+		while (!nomeStanza.equals(ESTREMI)) {
+			Scanner scannerLinea = new Scanner(definizioneStanzaBloccata);
+			nomeStanza = scannerLinea.next();
+			if (nomeStanza == null)
+				throw new FormatoFileNonValidoException("Termine inaspettata del file [" + this.numeroLinea + "].");
+			direzioneBloccata = scannerLinea.next();
+			attrezzoSbloccante = scannerLinea.next();
+			this.builder.addStanzaBloccata(nomeStanza, direzioneBloccata, attrezzoSbloccante);
 			this.stanze.add(nomeStanza);
 			nomeStanza = this.leggiRiga(reader);
 		}
