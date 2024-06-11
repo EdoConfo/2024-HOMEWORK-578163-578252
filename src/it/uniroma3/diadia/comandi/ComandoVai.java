@@ -23,7 +23,8 @@ public class ComandoVai extends AbstractComando{
 		if(super.getParametro() == null) {
 			super.getIO().mostraMessaggio("Dove vuoi andare?\n"
 					         + "Devi specificare una direzione");
-			return;
+			super.setParametro(super.getIO().leggiRiga());
+			//return;
 		}
 		
 		try {

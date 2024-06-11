@@ -71,30 +71,30 @@ public class DiaDia {
 	 */
 	public static void main(String[] args) {
 		IO io = new IOConsole();
-		Labirinto labirinto = new LabirintoBuilder()
+		Labirinto labirinto = Labirinto.newBuilder()
 			.addStanzaIniziale("Atrio")
-			.addAttrezzo("Osso", 2)
+			.addAttrezzo("Atrio", "Osso", 2)
 			.addStanzaVincente("Biblioteca")
 			.addStanzaBuia("Labortatorio", "Lanterna")
 			.addStanzaBloccata("AulaN10", "nord", "Chiave")
-			.addAttrezzo("Lanterna", 3)
+			.addAttrezzo("AulaN10", "Lanterna", 3)
 			.addStanzaMagica("AulaN11")
-			.addAttrezzo("Chiave", 1)
+			.addAttrezzo("AulaN11", "Chiave", 1)
 			
-			.addAdiacenza("Atrio", "Biblioteca", Direzione.NORD)
-			.addAdiacenza("Biblioteca", "Atrio", Direzione.SUD)
+			.addAdiacenza("Atrio", "Biblioteca", "Nord")
+			.addAdiacenza("Biblioteca", "Atrio", "Sud")
 			
-			.addAdiacenza("Atrio", "AulaN10", Direzione.SUD)
-			.addAdiacenza("AulaN10", "Atrio", Direzione.NORD)
+			.addAdiacenza("Atrio", "AulaN10", "Sud")
+			.addAdiacenza("AulaN10", "Atrio", "Nord")
 			
-			.addAdiacenza("Atrio", "Labortatorio", Direzione.OVEST)
-			.addAdiacenza("Labortatorio", "Atrio", Direzione.EST)
+			.addAdiacenza("Atrio", "Labortatorio", "Ovest")
+			.addAdiacenza("Labortatorio", "Atrio", "Est")
 			
-			.addAdiacenza("Atrio", "AulaN11", Direzione.EST)
-			.addAdiacenza("AulaN11", "Atrio", Direzione.OVEST)
+			.addAdiacenza("Atrio", "AulaN11", "Est")
+			.addAdiacenza("AulaN11", "Atrio", "Ovest")
 			
-			.addAdiacenza("Labortatorio", "AulaN11", Direzione.OVEST)
-			.addAdiacenza("AulaN11", "Labortatorio", Direzione.EST)
+			.addAdiacenza("Labortatorio", "AulaN11", "Ovest")
+			.addAdiacenza("AulaN11", "Labortatorio", "Est")
 			
 			.getLabirinto();
 		DiaDia gioco = new DiaDia(io, labirinto);
