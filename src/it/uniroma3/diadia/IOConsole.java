@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class IOConsole implements IO{
 	
-	public IOConsole() {}
-	
 	Scanner scannerDiLinee = new Scanner(System.in);
+
+	public IOConsole() {}
 	
 	@Override
 	public void mostraMessaggio(String messaggio) {
@@ -20,5 +20,9 @@ public class IOConsole implements IO{
 		return riga;
 	}
 	
+	public void close() {
+		if(this.scannerDiLinee != null)
+			this.scannerDiLinee.close();
+	}
 }
 

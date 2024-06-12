@@ -29,6 +29,11 @@ public class IOSimulator implements IO {
 		return rigaLetta;
 	}
 	
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+	}
+	
 	public String nextMessaggio() {
 		String next = this.messaggiProdotti[this.indiceMessaggiMostrati];
 		this.indiceMessaggiMostrati++;
@@ -38,5 +43,6 @@ public class IOSimulator implements IO {
 	public boolean hasNextMessaggio() {
 		return this.indiceMessaggiMostrati < this.indiceMessaggiProdotti;
 	}
+
 
 }

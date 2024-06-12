@@ -43,6 +43,7 @@ public class DiaDia {
 			io.mostraMessaggio("Inserisci l' istruzione : ");
 			istruzione = io.leggiRiga();
 		}while (!processaIstruzione(istruzione));
+		this.io.close();
 	}
 
 	/**
@@ -62,7 +63,6 @@ public class DiaDia {
 	    }
 		if(this.partita.getGiocatore().getCfu() == 0)
 			this.io.mostraMessaggio("Hai Perso, CFU terminati");
-		
 		return this.partita.isFinita();
 	}
 	
