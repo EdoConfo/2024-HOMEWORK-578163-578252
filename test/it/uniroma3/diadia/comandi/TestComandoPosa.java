@@ -30,9 +30,8 @@ public class TestComandoPosa {
     @Test
     public void testPosaAttrezzoNonInBorsa() {
         Partita partita = new Partita(labirinto);
-        IOConsole io = new IOConsole();
-        ComandoPosa comando = new ComandoPosa("martello");
-        comando.setIo(io);
+        ComandoPosa comando = new ComandoPosa();
+        comando.setParametro("Martello");
 
         comando.esegui(partita);
     }

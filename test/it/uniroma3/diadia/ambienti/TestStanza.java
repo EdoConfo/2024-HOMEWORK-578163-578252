@@ -14,13 +14,13 @@ public class TestStanza {
 	
 	@Test
 	public void testGetStanzaAdiacente() {
-		assertNull(s1.getStanzaAdiacente("sud"));
+		assertNull(s1.getStanzaAdiacente(Direzione.SUD));
 	}
 
 	@Test
 	public void testImpostaStanzaAdiacente() {
-		s1.impostaStanzaAdiacente("sud", s2);
-		assertEquals(s2, s1.getStanzaAdiacente("sud"));
+		s1.impostaStanzaAdiacente(Direzione.SUD, s2);
+		assertEquals(s2, s1.getStanzaAdiacente(Direzione.SUD));
 	}
 	
 	@Test

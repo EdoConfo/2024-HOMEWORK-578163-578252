@@ -13,9 +13,9 @@ public class TestLabirinto {
 
 	@Before
 	public void setUp() {
-		l = new LabirintoBuilder()
+		l = Labirinto.newBuilder()
 			.addStanzaIniziale("Atrio")
-			.addAttrezzo("martello", 3)
+			.addAttrezzo("Atrio", "martello", 3)
 			.addStanzaVincente("Biblioteca")
 			.addAdiacenza("Atrio", "Biblioteca", "nord")
 			.getLabirinto();

@@ -30,6 +30,10 @@ public class DiaDia {
 
 	private Partita partita;
 	private IO io;
+	
+	public DiaDia(IO io) {
+		this.io = io;
+	}
 
 	public DiaDia(IO io, Labirinto labirinto) {
 		this.io = io;

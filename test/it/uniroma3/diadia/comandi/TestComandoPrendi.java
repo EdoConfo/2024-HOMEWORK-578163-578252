@@ -37,9 +37,9 @@ public class TestComandoPrendi {
         stanza.addAttrezzo(attrezzo);
         partita.getLabirinto().setStanzaCorrente(stanza);
 
-        ComandoPrendi comando = new ComandoPrendi("martello");
-        IO io = new IOConsole();
-        comando.setIo(io);
+        ComandoPrendi comando = new ComandoPrendi();
+        comando.setParametro("martello");
+        
         comando.esegui(partita);
 
         assertTrue(partita.getGiocatore().getBorsa().hasAttrezzo("martello"));

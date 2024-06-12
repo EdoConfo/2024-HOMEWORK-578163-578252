@@ -18,8 +18,7 @@ public class TestStanzaBloccata {
 		sb = new StanzaBloccata("StanzaBloccata", "ovest", "grimaldello");
 		s = new Stanza("Stanzetta");
 		a = new Attrezzo("grimaldello", 1);
-		sb.impostaStanzaAdiacente("ovest", s);
-		
+		sb.impostaStanzaAdiacente(Direzione.OVEST, s);
 	}
 
 	@After
@@ -29,7 +28,7 @@ public class TestStanzaBloccata {
 	@Test
 	public void testGetStanzaAdiacenteDirezioneSbloccata() {
 		sb.addAttrezzo(a);
-		assertEquals(s, sb.getStanzaAdiacente("ovest"));
+		assertEquals(s, sb.getStanzaAdiacente(Direzione.OVEST));
 	}
 
 	@Test
